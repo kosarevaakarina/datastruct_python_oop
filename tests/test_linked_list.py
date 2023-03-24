@@ -45,7 +45,12 @@ class TestQueue(unittest.TestCase):
         self.ll.insert_beginning({'id': 1, 'username': 'lazzy508509'})
         self.assertEqual(self.ll.get_data_by_id(1), {'id': 1, 'username': 'lazzy508509'})
 
-    # def test_get_data_by_id_exception(self):
-    #     self.ll.insert_at_end('idusername')
-    #     self.assertEqual(self.ll.get_data_by_id(0), "Данные не являются словарем или в словаре нет id.")
+    def test_get_data_by_id_correct_data(self):
+        """Проверка получения словаря по id, когда все данные в списке корректные"""
+        self.ll.insert_beginning({'id': 1, 'username': 'lazzy508509'})
+        self.ll.insert_at_end({'id': 2, 'username': 'mik.roz'})
+        self.ll.insert_at_end({'id': 3, 'username': 'mosh_s'})
+        self.ll.insert_beginning({'id': 0, 'username': 'serebro'})
 
+        self.assertEqual(self.ll.get_data_by_id(3), {'id': 3, 'username': 'mosh_s'})
+        self.assertEqual(self.ll.get_data_by_id(4), None)
